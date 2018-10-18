@@ -1,5 +1,5 @@
 {
-  "name": "cordova-plugin-applewatch",
+  "name": "cordova-plugin-applewatch-infopro",
   "version": "0.6.0",
   "description": "AppleWatch plugin for your Cordova project. You build the UI with JS, so no XCode native code hacking required.",
   "cordova": {
