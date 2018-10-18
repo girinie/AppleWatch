@@ -1,0 +1,32 @@
+{
+  "name": "cordova-plugin-applewatch",
+  "version": "0.6.0",
+  "description": "AppleWatch plugin for your Cordova project. You build the UI with JS, so no XCode native code hacking required.",
+  "cordova": {
+    "id": "cordova-plugin-applewatch",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/girinie/AppleWatch.git"
+  },
+  "keywords": [
+    "AppleWatch",
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.5.0"
+    }
+  ],
+  "author": "girish",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/girinie/AppleWatch/issues"
+  },
+  "homepage": "https://github.com/girinie/AppleWatch#readme"
+}
