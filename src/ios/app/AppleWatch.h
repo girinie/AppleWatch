@@ -1,5 +1,6 @@
 #import "Foundation/Foundation.h"
 #import "Cordova/CDV.h"
+#import <WatchConnectivity/WatchConnectivity.h>
 
 @interface AppleWatch : CDVPlugin
 

@@ -7,7 +7,9 @@ static NSString *const AWPlugin_Page_Glance = @"Glance";
 static NSString *const AWPlugin_Page_AppMain = @"AppMain";
 static NSString *const AWPlugin_Page_AppDetail = @"AppDetail";
 
-@interface AppleWatch ()
+@interface AppleWatch () <WCSessionDelegate> {
+  WCSession *session;
+}
 
 @property (nonatomic, strong) MMWormhole* wormhole;
 
@@ -16,11 +18,18 @@ static NSString *const AWPlugin_Page_AppDetail = @"AppDetail";
 @implementation AppleWatch
 
 - (void) init:(CDVInvokedUrlCommand*)command {
-    NSString *appGroup = [NSString stringWithFormat:@"group.%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]];
-
+  NSString *appGroup = [NSString stringWithFormat:@"group.%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]];
+    [WCSession defaultSession].delegate = self;
+    session = [WCSession defaultSession];
+    session.delegate = self;
     self.wormhole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:appGroup optionalDirectory:@"wormhole"];
-
-    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+    if(session.isPaired){
+          [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
+    }
+    else{
+          [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR] callbackId:command.callbackId];
+    }
+  
 
     // make sure the app is awake
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 500 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
